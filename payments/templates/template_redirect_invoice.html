@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="https://payeer.com/api/merchant/process.php" accept-charset="UTF-8"> {{ form.hidden_tag() }}
+          <h1>Amount to be paid</h1><input name="amount" value={{request.form.get("amount")}}>
+          <h1>Currency</h1><input name="currency" value={{request.form.get("currency")}}>
+          <h1>Description</h1><input name="description" value={{request.form.get("description")}}>
+          <input name="Pay right now!" type="submit"/>
+    </form>
+</body>
+</html>

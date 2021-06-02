@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Fastest payments in the world</h1>
+        <form action=""  method="POST" > {{ form.hidden_tag() }}
+            {{ form.amount.label() }}
+            {{ form.amount() }}
+
+            {{ form.currency.label() }}
+            {{ form.currency() }}
+
+            {{ form.description.label() }}
+            {{ form.description() }}
+
+            {{ form.submit() }}
+
+            {% for error in form.errors %}
+... 		    <div class="error">{{ error }}</div>
+... 	    {% endfor %}
+            {{form.errors}}
+        </form>
+</body>
+</html>
