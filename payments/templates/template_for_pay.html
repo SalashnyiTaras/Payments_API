@@ -1,19 +1,27 @@
 <!DOCTYPE html>
+{% extends "base.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% block title %}<title>Data for PAY</title>{% endblock %}
 </head>
+{% block content %}
 <body>
-    <form name="Pay" method="POST" action="https://pay.piastrix.com/ru/pay" accept-charset="UTF-8">
-        <input name="amount" value={{request.form.get("amount")}}>
-        <input name="currency" value={{request.form.get("currency")}}>
-        <input name="shop_id" value={{"shop_id"}}>
-        <input name="sign" value="2a966c9942652c115640f584b101f4124a8c44e9f119b449195beacf539e98b9"/>
-        <input name="shop_order_id" value={{shop_id}}>
-        <input name="description" value={{request.form.get("description")}}>
-        <input type="submit"/>
-    </form>
-
+    <div class="container">
+        <h2 class="h3 mb-3 font-weight-normal">
+            Check the data before payment will be accepted
+        </h2>
+        <br>
+        <form name="Pay" method="POST" action="https://pay.piastrix.com/ru/pay" accept-charset="UTF-8" class="form-register" style="color:white"> {{ form.hidden_tag() }}
+            <h6>Amount</h6><input class="form-control" name="amount" value={{request.form.get("amount")}}>
+            <h6>Currency</h6><input class="form-control" name="currency" value={{currency_to_display_html}}>
+            <input class="form-control" type="hidden" name="shop_id" value={{shop_id}}>
+            <input class="form-control" type="hidden" name="sign" value={{sign}}>
+            <input class="form-control" type="hidden" name="shop_order_id" value={{shop_order_id}}>
+            <h6>Payment description</h6><input class="form-control" name="description" value='{{request.form.get("description")}}'>
+            <input class="btn btn-lg btn-block btn-primary" type="submit"/>
+        </form>
+    </div>
 </body>
+{% endblock %}
 </html>

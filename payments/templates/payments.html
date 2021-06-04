@@ -1,27 +1,31 @@
 <!DOCTYPE html>
+{% extends "base.html" %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    {% block title %} <title>Piastrix Payment API</title>{% endblock %}
 </head>
-<body>
-  <h1>Fastest payments in the world</h1>
-        <form action=""  method="POST" > {{ form.hidden_tag() }}
-            {{ form.amount.label() }}
-            {{ form.amount() }}
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" action="" class="form-register" style="color:white"> {{ form.hidden_tag() }}
+            <h1 class="h1 mb-2 font-weight-normal">
+                To make a payment please enter:
+            </h1>
+            <br>
+            <h3>{{ form.amount.label() }}</h3>
+            {{ form.amount(class="form-control") }}
 
-            {{ form.currency.label() }}
-            {{ form.currency() }}
+            <h3>{{ form.currency.label() }}</h3>
+            {{ form.currency(class="form-control") }}
 
-            {{ form.description.label() }}
-            {{ form.description() }}
+            <h3>{{ form.description.label() }}</h3>
+            {{ form.description(class="form-control") }}
 
-            {{ form.submit() }}
-
-            {% for error in form.errors %}
-... 		    <div class="error">{{ error }}</div>
-... 	    {% endfor %}
-            {{form.errors}}
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <br>
         </form>
+    </div>
 </body>
+{% endblock %}
 </html>

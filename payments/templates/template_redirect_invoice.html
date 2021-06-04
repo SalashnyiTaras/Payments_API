@@ -1,15 +1,26 @@
 <!DOCTYPE html>
+{% extends "base.html"%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% block title %} <title>Data for Invoice</title>{% endblock %}
 </head>
+{% block content %}
 <body>
-    <form method="POST" action="https://payeer.com/api/merchant/process.php" accept-charset="UTF-8"> {{ form.hidden_tag() }}
-          <h1>Amount to be paid</h1><input name="amount" value={{request.form.get("amount")}}>
-          <h1>Currency</h1><input name="currency" value={{request.form.get("currency")}}>
-          <h1>Description</h1><input name="description" value={{request.form.get("description")}}>
-          <input name="Pay right now!" type="submit"/>
-    </form>
+    <div class="container">
+        <h2 class="h3 mb-3 font-weight-normal">
+            Check the data before payment will be accepted
+        </h2>
+        <br>
+        <form method="POST" action="https://payeer.com/api/merchant/process.php" enctype="multipart/form-data"> {{ form.hidden_tag() }}
+          <h6>Amount to be paid</h6><input class="form-control"  name="amount" value={{request.form.get("amount")}}>
+          <h6>Currency</h6><input name="currency" class="form-control" value={{currency_to_display_html}}>
+          <h6>Payment description</h6><input class="form-control" name="description" value='{{request.form.get("description")}}'>
+          <input class="btn btn-lg btn-block btn-primary"  value="Pay right now!" type="submit"/>
+        </form>
+        <br>
+    </div>
 </body>
+{% endblock %}
 </html>
+

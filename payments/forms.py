@@ -1,11 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, SelectField, SubmitField, TextAreaField, FloatField
+from wtforms import SelectField, SubmitField, FloatField, StringField
+from wtforms.validators import Length, DataRequired, NumberRange
 
 
 class PaymentsForm(FlaskForm):
-    # TODO: to add field validators
-    amount = StringField(label="Amount to pay: ")
-    currency = SelectField(label="Choose your currency", choices=[(840, "USD"), (643, "Russian RUB"), (978, "EUR")],
-                           coerce=int)
-    description = TextAreaField(label="Payment description")
+
+    amount = FloatField(label="Amount to pay:",
+                        validators=[NumberRange(1, 5000), DataRequired()])
+    currency = SelectField(label="Choose your currency",
+                           choices=[(978, "EUR"), (840, "USD"), (643, "RUB")], coerce=int)
+    description = StringField(label="Payment description", validators=[Length(min=15, max=100,
+                              message='Description must be between 15 and 100 characters long.'), DataRequired()])
     submit = SubmitField(label="Pay")
