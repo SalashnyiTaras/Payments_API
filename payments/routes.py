@@ -30,7 +30,6 @@ def payments():
                 shop_order_id = '102'
                 extra_fields = {'description': request.form.get("description")}
                 response = payment_api_class.pay(amount, currency, shop_order_id, extra_fields)
-                print(request.form)
                 return render_template('template_for_pay.html', shop_id=shop_id, shop_order_id=shop_order_id,
                                        sign=response[0]['sign'], form=form,
                                        currency_to_display_html=currency_to_display_html)
