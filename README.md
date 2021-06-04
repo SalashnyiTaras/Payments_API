@@ -1,5 +1,5 @@
 # Payments_API
-API for making payments written on Flask.
+API for making payments written on Flask. API can be accessed via: http://194.233.163.91/
 
 # Requirements
 To start working with the API, you need to install Python = 3.9. and the pip package manager. After that, you should install the modules required for the programm:
